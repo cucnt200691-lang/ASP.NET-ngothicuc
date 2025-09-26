@@ -1,0 +1,63 @@
+@model KhmerFestivalWebsite.Models.Festival
+@{
+    ViewData["Title"] = "Sửa Lễ Hội";
+}
+
+<div class="container">
+    <h1>Sửa Lễ Hội</h1>
+
+    <form method="post">
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="CreatedAt" type="hidden" />
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Tên Lễ Hội</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Mô Tả</label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Meaning" class="form-label">Ý Nghĩa</label>
+                    <textarea asp-for="Meaning" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Organization" class="form-label">Tổ Chức</label>
+                    <input asp-for="Organization" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TimePeriod" class="form-label">Thời Gian Tổ Chức</label>
+                    <input asp-for="TimePeriod" class="form-control" placeholder="Ví dụ: Tháng 4 âm lịch" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Location" class="form-label">Địa Điểm</label>
+                    <input asp-for="Location" class="form-control" placeholder="Ví dụ: Các tỉnh Nam Bộ" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ImageUrl" class="form-label">URL Hình Ảnh</label>
+                    <input asp-for="ImageUrl" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                    <a href="@Url.Action("Festivals", "Admin")" class="btn btn-secondary">Hủy</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

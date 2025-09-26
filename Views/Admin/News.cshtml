@@ -1,0 +1,54 @@
+@model IEnumerable<KhmerFestivalWebsite.Models.News>
+@{
+    ViewData["Title"] = "Quản Lý Tin Tức";
+}
+
+<div class="container-fluid">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a href="@Url.Action("Index", "Admin")" class="btn btn-outline-secondary me-2">&larr; Quay lại Admin</a>
+            <h1 class="d-inline">Quản Lý Tin Tức</h1>
+        </div>
+        <a href="@Url.Action("CreateNews", "Admin")" class="btn btn-success">Thêm Tin Tức Mới</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Tiêu Đề</th>
+                    <th>Tóm Tắt</th>
+                    <th>Ngày Xuất Bản</th>
+                    <th>Ngày Tạo</th>
+                    <th>Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var news in Model)
+                {
+                    <tr>
+                        <td>@news.Title</td>
+                        <td>@(news.Excerpt.Length > 50 ? news.Excerpt.Substring(0, 50) + "..." : news.Excerpt)</td>
+                        <td>@news.PublishedAt.ToString("dd/MM/yyyy")</td>
+                        <td>@news.CreatedAt.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <a href="@Url.Action("EditNews", "Admin", new { id = news.Id })" class="btn btn-sm btn-warning">Sửa</a>
+                            <form method="post" action="@Url.Action("DeleteNews", "Admin")" style="display:inline;">
+                                <input type="hidden" name="id" value="@news.Id" />
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

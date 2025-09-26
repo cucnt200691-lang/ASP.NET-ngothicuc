@@ -1,0 +1,190 @@
+@model KhmerFestivalWebsite.Models.Festival
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-900 via-red-700 to-yellow-600 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-6">
+                <a asp-action="Index" class="text-white hover:text-yellow-300 inline-flex items-center">
+                    <i data-lucide="arrow-left" class="h-5 w-5 mr-2"></i>
+                    Quay lại danh sách
+                </a>
+            </div>
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    @Model.Name
+                </h1>
+                <p class="text-xl md:text-2xl max-w-3xl mx-auto">
+                    @Model.Description
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Main Content -->
+                <div class="lg:col-span-2">
+                    <!-- Festival Image -->
+                    <div class="mb-8">
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <div class="h-96 rounded-lg overflow-hidden relative">
+                                <img src="@Model.ImageUrl" alt="@Model.Name" class="w-full h-full object-cover" />
+                                <div class="absolute bottom-4 left-4 text-white bg-black bg-opacity-50 px-3 py-1 rounded">
+                                    <p class="text-sm">@Model.Name</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="h-96 bg-gradient-to-br from-blue-400 to-red-400 rounded-lg flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <i data-lucide="calendar" class="h-24 w-24 mx-auto mb-4"></i>
+                                    <p class="text-lg">Hình ảnh lễ hội @Model.Name</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Festival Description -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Mô tả chi tiết</h2>
+                        <div class="prose max-w-none">
+                            <p class="text-gray-700 leading-relaxed mb-6">
+                                @Model.Description
+                            </p>
+                            
+                            @if (!string.IsNullOrEmpty(Model.Meaning))
+                            {
+                                <h3 class="text-xl font-semibold text-gray-900 mb-4">Ý nghĩa</h3>
+                                <p class="text-gray-700 leading-relaxed mb-6">
+                                    @Model.Meaning
+                                </p>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Activities Section -->
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Các hoạt động chính</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="music" class="h-6 w-6 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Biểu diễn nghệ thuật</h3>
+                                    <p class="text-gray-600 text-sm">Múa truyền thống, hát dân ca và các tiết mục nghệ thuật đặc sắc</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="utensils" class="h-6 w-6 text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Ẩm thực truyền thống</h3>
+                                    <p class="text-gray-600 text-sm">Thưởng thức các món ăn đặc trưng của người Khmer</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="users" class="h-6 w-6 text-yellow-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Hoạt động cộng đồng</h3>
+                                    <p class="text-gray-600 text-sm">Tham gia các hoạt động tập thể và giao lưu văn hóa</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="heart" class="h-6 w-6 text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Nghi lễ tâm linh</h3>
+                                    <p class="text-gray-600 text-sm">Các nghi lễ cầu phúc và tưởng nhớ tổ tiên</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-1">
+                    <!-- Festival Info -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Thông tin lễ hội</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <i data-lucide="calendar" class="h-5 w-5 text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-medium text-gray-900">Thời gian</p>
+                                    <p class="text-gray-600">@Model.TimePeriod</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <i data-lucide="map-pin" class="h-5 w-5 text-red-600 mt-1"></i>
+                                <div>
+                                    <p class="font-medium text-gray-900">Địa điểm</p>
+                                    <p class="text-gray-600">@Model.Location</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <i data-lucide="users" class="h-5 w-5 text-green-600 mt-1"></i>
+                                <div>
+                                    <p class="font-medium text-gray-900">Tổ chức</p>
+                                    <p class="text-gray-600">@Model.Organization</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Share Section -->
+                    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Chia sẻ</h3>
+                        <div class="flex space-x-3">
+                            <button class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                <i data-lucide="facebook" class="h-4 w-4 mx-auto"></i>
+                            </button>
+                            <button class="flex-1 bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600 transition-colors">
+                                <i data-lucide="twitter" class="h-4 w-4 mx-auto"></i>
+                            </button>
+                            <button class="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                                <i data-lucide="share-2" class="h-4 w-4 mx-auto"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Related Festivals -->
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Lễ hội liên quan</h3>
+                        <div class="space-y-4">
+                            <a href="#" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <h4 class="font-medium text-gray-900">Lễ Pchum Ben</h4>
+                                <p class="text-sm text-gray-600">Lễ cúng ông bà tổ tiên</p>
+                            </a>
+                            <a href="#" class="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <h4 class="font-medium text-gray-900">Lễ Ok Om Bok</h4>
+                                <p class="text-sm text-gray-600">Lễ hội cúng trăng</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>

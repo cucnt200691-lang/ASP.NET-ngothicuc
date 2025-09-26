@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Lễ Hội Khmer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <header class="bg-gradient-to-r from-blue-900 via-red-700 to-yellow-600 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <a asp-controller="Home" asp-action="Index" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
+                        <span class="text-blue-900 font-bold text-lg">KH</span>
+                    </div>
+                    <div class="text-white">
+                        <h1 class="text-xl font-bold">Lễ Hội Khmer</h1>
+                        <p class="text-sm opacity-90">Văn Hóa Truyền Thống</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a asp-controller="Home" asp-action="Index" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-colors">
+                        Trang chủ
+                    </a>
+                    <a asp-controller="Festivals" asp-action="Index" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-colors">
+                        Lễ hội
+                    </a>
+                    <a asp-controller="News" asp-action="Index" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-colors">
+                        Tin tức
+                    </a>
+                    <a asp-controller="Home" asp-action="About" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-colors">
+                        Giới thiệu
+                    </a>
+                    <a asp-controller="Admin" asp-action="Index" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-colors">
+                        Admin
+                    </a>
+                </nav>
+
+                <!-- Search Bar -->
+                <form asp-controller="Festivals" asp-action="Index" method="get" class="hidden md:flex items-center">
+                    <div class="relative">
+                        <input type="text" name="search" placeholder="Tìm kiếm lễ hội..." 
+                               class="w-64 px-4 py-2 pl-10 bg-white bg-opacity-20 text-white placeholder-white placeholder-opacity-70 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                        <i data-lucide="search" class="absolute left-3 top-2.5 h-4 w-4 text-white opacity-70"></i>
+                    </div>
+                </form>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="lg:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-black bg-opacity-20">
+                <a asp-controller="Home" asp-action="Index" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white hover:bg-opacity-10">
+                    Trang chủ
+                </a>
+                <a asp-controller="Festivals" asp-action="Index" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white hover:bg-opacity-10">
+                    Lễ hội
+                </a>
+                <a asp-controller="News" asp-action="Index" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white hover:bg-opacity-10">
+                    Tin tức
+                </a>
+                <a asp-controller="Home" asp-action="About" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white hover:bg-opacity-10">
+                    Giới thiệu
+                </a>
+                <a asp-controller="Admin" asp-action="Index" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white hover:bg-opacity-10">
+                    Admin
+                </a>
+                
+                <!-- Mobile Search -->
+                <form asp-controller="Festivals" asp-action="Index" method="get" class="px-3 py-2">
+                    <div class="relative">
+                        <input type="text" name="search" placeholder="Tìm kiếm lễ hội..." 
+                               class="w-full px-4 py-2 pl-10 bg-white bg-opacity-20 text-white placeholder-white placeholder-opacity-70 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                        <i data-lucide="search" class="absolute left-3 top-2.5 h-4 w-4 text-white opacity-70"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
+                            <span class="text-blue-900 font-bold text-lg">KH</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Lễ Hội Khmer</h3>
+                            <p class="text-gray-300">Văn Hóa Truyền Thống</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Khám phá và trải nghiệm những giá trị văn hóa độc đáo của dân tộc Khmer 
+                        qua các lễ hội truyền thống được lưu truyền qua nhiều thế hệ.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liên kết</h4>
+                    <ul class="space-y-2">
+                        <li><a asp-controller="Home" asp-action="Index" class="text-gray-300 hover:text-white">Trang chủ</a></li>
+                        <li><a asp-controller="Festivals" asp-action="Index" class="text-gray-300 hover:text-white">Lễ hội</a></li>
+                        <li><a asp-controller="News" asp-action="Index" class="text-gray-300 hover:text-white">Tin tức</a></li>
+                        <li><a asp-controller="Home" asp-action="About" class="text-gray-300 hover:text-white">Giới thiệu</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liên hệ</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p>Email: info@lehoimkhmer.vn</p>
+                        <p>Điện thoại: (028) 1234 5678</p>
+                        <p>Địa chỉ: TP. Hồ Chí Minh</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2025 Lễ Hội Khmer. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

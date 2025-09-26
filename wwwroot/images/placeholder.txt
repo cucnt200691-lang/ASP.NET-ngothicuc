@@ -1,0 +1,11 @@
+Thư mục này chứa hình ảnh cho website lễ hội Khmer.
+
+Các hình ảnh cần có:
+- chol-chnam-thmay.jpg
+- pchum-ben.jpg  
+- ok-om-bok.jpg
+- news-1.jpg
+- news-2.jpg
+- news-3.jpg
+
+Kích thước khuyến nghị: 800x600px cho lễ hội, 600x400px cho tin tức.

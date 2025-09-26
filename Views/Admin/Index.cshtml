@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">Bảng Điều Khiển Admin</h1>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card border-primary">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Quản Lý Lễ Hội</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Quản lý thông tin các lễ hội dân tộc Khmer</p>
+                            <a href="@Url.Action("Festivals", "Admin")" class="btn btn-primary">Quản Lý Lễ Hội</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card border-success">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Quản Lý Tin Tức</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Quản lý tin tức và bài viết về văn hóa Khmer</p>
+                            <a href="@Url.Action("News", "Admin")" class="btn btn-success">Quản Lý Tin Tức</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
